@@ -1,0 +1,325 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: Arial, sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #fff7fb,
+        #f9f0ff,
+        #fffaf2
+    );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #5d4656;
+}
+
+.container {
+    width: 90%;
+    max-width: 500px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.75);
+
+    padding: 45px 30px;
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 15px 40px rgba(120, 80, 110, 0.15);
+
+    backdrop-filter: blur(10px);
+}
+
+h1 {
+    margin-bottom: 10px;
+
+    color: #b66d91;
+
+    font-size: 38px;
+}
+
+.subtitle {
+    font-size: 17px;
+
+    color: #806b76;
+
+    margin-bottom: 30px;
+}
+
+input {
+    width: 100%;
+
+    padding: 15px 18px;
+
+    border: 2px solid #efd7e4;
+
+    border-radius: 15px;
+
+    outline: none;
+
+    font-size: 16px;
+
+    text-align: center;
+
+    background: #fff;
+
+    color: #5d4656;
+}
+
+input:focus {
+    border-color: #d79ab7;
+}
+
+button {
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    background: #c985a5;
+
+    color: white;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #b86f91;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 18px rgba(180, 100, 140, 0.25);
+}
+
+#result {
+    margin-top: 30px;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    color: #654f5c;
+}
+
+footer {
+    margin-top: 35px;
+
+    font-size: 14px;
+
+    color: #e270ab;
+}
+.envelope {
+    margin: 35px auto 10px;
+
+    width: 280px;
+    height: 190px;
+
+    position: relative;
+
+    perspective: 1000px;
+}
+
+.envelope-body {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    background: #e8a9c4;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 12px 25px rgba(130, 70, 100, 0.2);
+
+    overflow: hidden;
+}
+
+.flap {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 0;
+    height: 0;
+
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-top: 100px solid #d98aaa;
+
+    transform-origin: top;
+
+    transition: transform 0.8s ease;
+
+    z-index: 5;
+}
+
+.letter {
+    position: absolute;
+
+    width: 250px;
+    height: 165px;
+
+    left: 15px;
+    top: 20px;
+
+    background: #fffafc;
+
+    border-radius: 10px;
+
+    padding: 18px;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 5px 15px rgba(100, 60, 80, 0.15);
+
+    z-index: 2;
+
+    overflow-y: auto;
+
+    transition:
+        transform 1s ease,
+        top 1s ease;
+}
+
+#duaText {
+    margin: 0;
+
+    font-size: 15px;
+
+    line-height: 2;
+
+    color: #634c59;
+
+    direction: rtl;
+
+    text-align: right;
+
+    white-space: pre-line;
+}
+.signature {
+    margin-top: 15px;
+
+    font-size: 13px;
+
+    color: #b66d91;
+
+    font-weight: bold;
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+
+    z-index: 1;
+}
+
+.envelope.open .letter {
+    transform: translateY(-105px);
+
+    z-index: 4;
+}
+
+.hidden {
+    display: none;
+}
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+.container {
+    animation: fadeIn 1s ease;
+}
+@media (max-width: 600px) {
+
+    .container {
+        width: 92%;
+
+        padding: 35px 20px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .subtitle {
+        font-size: 15px;
+    }
+
+    .envelope {
+        transform: scale(0.9);
+    }
+
+}
+#hearts {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 100;
+}
+
+.floating-heart {
+    position: absolute;
+
+    bottom: 35%;
+
+    font-size: 20px;
+
+    animation: floatHeart 2.5s ease-out forwards;
+
+    opacity: 0;
+}
+
+@keyframes floatHeart {
+
+    0% {
+        transform: translateY(0) scale(0.5) rotate(0deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-220px) scale(1.2) rotate(25deg);
+        opacity: 0;
+    }
+
+}
