@@ -1,0 +1,531 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: Arial, sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #fff7fb,
+        #f9f0ff,
+        #fffaf2
+    );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #5d4656;
+}
+
+.container {
+    width: 90%;
+    max-width: 500px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.75);
+
+    padding: 45px 30px;
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 15px 40px rgba(120, 80, 110, 0.15);
+
+    backdrop-filter: blur(10px);
+}
+
+h1 {
+    margin-bottom: 10px;
+
+    color: #b66d91;
+
+    font-size: 38px;
+}
+
+.subtitle {
+    font-size: 17px;
+
+    color: #806b76;
+
+    margin-bottom: 30px;
+}
+
+input {
+    width: 100%;
+
+    padding: 15px 18px;
+
+    border: 2px solid #efd7e4;
+
+    border-radius: 15px;
+
+    outline: none;
+
+    font-size: 16px;
+
+    text-align: center;
+
+    background: #fff;
+
+    color: #5d4656;
+}
+
+input:focus {
+    border-color: #d79ab7;
+}
+
+button {
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    background: #c985a5;
+
+    color: white;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #b86f91;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 18px rgba(180, 100, 140, 0.25);
+}
+
+#result {
+    margin-top: 30px;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    color: #654f5c;
+}
+
+footer {
+    margin-top: 35px;
+
+    font-size: 14px;
+
+    color: #e270ab;
+}
+.envelope {
+    position: relative;
+
+    width: 310px;
+    height: 430px;
+
+    margin: 40px auto 20px;
+
+    perspective: 1000px;
+}
+
+.envelope-body {
+    position: absolute;
+
+    width: 300px;
+    height: 200px;
+
+    left: 50%;
+    bottom: 0;
+
+    transform: translateX(-50%);
+
+    background: linear-gradient(
+        145deg,
+        #e8a6c2,
+        #d98cad
+    );
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 15px 30px rgba(130, 70, 100, 0.22);
+
+    z-index: 5;
+
+    overflow: visible;
+}
+
+.flap {
+    position: absolute;
+
+    width: 0;
+    height: 0;
+
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+
+    border-top: 105px solid #d98cad;
+
+    top: 0;
+    left: 0;
+
+    z-index: 10;
+
+    transform-origin: top;
+
+    transition:
+        transform 0.8s ease;
+}
+
+.letter {
+    position: absolute;
+
+    width: 310px;
+    min-height: 380px;
+    max-height: 70vh;
+
+    left: 50%;
+    top: 15px;
+
+    transform: translateX(-50%) translateY(0) scale(0.85);
+
+    background: linear-gradient(
+        145deg,
+        #fffafd,
+        #fff3f8
+    );
+
+    border-radius: 22px;
+
+    padding: 28px 24px;
+
+    box-sizing: border-box;
+
+    border: 2px solid rgba(210, 130, 165, 0.25);
+
+    box-shadow:
+        0 20px 50px rgba(130, 70, 100, 0.25);
+
+    z-index: 2;
+
+    overflow-y: auto;
+
+    opacity: 0;
+
+    transition:
+        transform 1s cubic-bezier(.2,.8,.2,1),
+        opacity 0.6s ease;
+
+    direction: rtl;
+}
+
+
+/* الزخارف الصغيرة داخل الرسالة */
+
+.letter::before {
+    content: "🌷";
+
+    position: absolute;
+
+    top: 12px;
+    left: 18px;
+
+    font-size: 22px;
+
+    opacity: 0.8;
+}
+
+
+.letter::after {
+    content: "🤍";
+
+    position: absolute;
+
+    top: 12px;
+    right: 18px;
+
+    font-size: 20px;
+
+    opacity: 0.8;
+}
+
+
+/* الرسالة لما تفتح */
+
+.envelope.open .letter {
+
+    transform:
+        translateX(-50%)
+        translateY(-330px)
+        scale(1);
+
+    opacity: 1;
+
+    z-index: 20;
+}
+#duaText {
+    margin: 0;
+
+    color: #5f4855;
+
+    font-size: 16px;
+
+    line-height: 1.9;
+
+    direction: rtl;
+
+    text-align: right;
+}
+
+
+/* اسم الشخص */
+
+.greeting {
+    display: block;
+
+    direction: ltr;
+
+    text-align: center;
+
+    color: #b96d91;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    margin-top: 15px;
+
+    margin-bottom: 18px;
+}
+
+
+/* نص الدعاء */
+
+.dua-content {
+    display: block;
+
+    white-space: pre-line;
+
+    direction: rtl;
+
+    text-align: right;
+}
+
+.greeting {
+    display: block;
+
+    direction: ltr;
+
+    text-align: left;
+
+    font-size: 16px;
+
+    color: #b66d91;
+
+    margin-bottom: 7px;
+}
+
+.dua-content {
+    display: block;
+
+    white-space: pre-line;
+
+    direction: rtl;
+
+    text-align: right;
+}
+.signature {
+    margin-top: 15px;
+
+    font-size: 13px;
+
+    color: #b66d91;
+
+    font-weight: bold;
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+
+    z-index: 1;
+}
+
+.envelope.open .letter {
+    transform: translateY(-190px);
+
+    z-index: 4;
+}
+.envelope.open .envelope-body {
+    overflow: visible;
+}
+
+.hidden {
+    display: none;
+}
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+.container {
+    animation: fadeIn 1s ease;
+}
+@media (max-width: 600px) {
+
+    .container {
+        width: 92%;
+
+        padding: 35px 20px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .subtitle {
+        font-size: 15px;
+    }
+
+    .envelope {
+        transform: scale(0.9);
+
+        margin-top: 25px;
+
+        margin-bottom: 0;
+    }
+
+}
+
+#hearts {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 100;
+}
+
+.floating-heart {
+    position: absolute;
+
+    bottom: 28%;
+
+    font-size: 22px;
+
+    animation:
+        floatHeart 2.8s ease-out forwards;
+
+    opacity: 0;
+
+    filter:
+        drop-shadow(
+            0 3px 5px rgba(180, 100, 140, 0.2)
+        );
+}
+
+@keyframes floatHeart {
+
+    0% {
+        transform:
+            translateY(0)
+            scale(0.4)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+
+    15% {
+        opacity: 1;
+    }
+
+
+    50% {
+        transform:
+            translateY(-120px)
+            scale(1)
+            rotate(12deg);
+
+        opacity: 1;
+    }
+
+
+    100% {
+        transform:
+            translateY(-280px)
+            scale(1.3)
+            rotate(-20deg);
+
+        opacity: 0;
+    }
+
+}
+@media (max-width: 600px) {
+
+    .envelope {
+        width: 100%;
+
+        height: 430px;
+
+        margin-top: 35px;
+    }
+
+
+    .letter {
+        width: 92vw;
+
+        max-width: 330px;
+
+        min-height: 360px;
+
+        max-height: 65vh;
+
+        padding: 26px 20px;
+    }
+
+
+    .envelope.open .letter {
+        transform:
+            translateX(-50%)
+            translateY(-300px)
+            scale(1);
+    }
+
+
+    #duaText {
+        font-size: 15px;
+
+        line-height: 1.85;
+    }
+
+
+    .greeting {
+        font-size: 19px;
+
+        margin-bottom: 15px;
+    }
+
+}
