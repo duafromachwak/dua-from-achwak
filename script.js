@@ -195,17 +195,53 @@ function getSpecialDua(name) {
 
 duaButton.addEventListener("click", function () {
 
- const name = nameInput.value.trim();
+    const name = nameInput.value.trim();
 
-saveName(name);
-
-if (name === "") {
+    if (name === "") {
 
         alert("Please write your name first 🌷");
 
         return;
 
     }
+
+    saveName(name);
+
+    // نشوفو إذا عندو دعاء خاص
+    let selectedDua = getSpecialDua(name);
+
+    // إذا ما عندوش، نعطيوه دعاء عشوائي
+    if (selectedDua === null) {
+
+        const randomIndex =
+            Math.floor(Math.random() * duas.length);
+
+        selectedDua = duas[randomIndex];
+
+    }
+
+    // نحطو الدعاء داخل الرسالة
+    duaText.innerHTML = `
+        <strong class="greeting">Dear ${name}, 🤍</strong>
+        <span class="dua-content">${selectedDua}</span>
+    `;
+
+    // نظهرو الظرف
+    envelope.classList.remove("hidden");
+
+    // نسكروه قبل ما نعاودو نفتحو
+    envelope.classList.remove("open");
+
+    // نعطيو وقت صغير قبل الفتح
+    setTimeout(function () {
+
+        envelope.classList.add("open");
+
+        createHearts();
+
+    }, 300);
+
+});
 
 
     // نشوفو إذا عندو دعاء خاص
